@@ -3,3 +3,7 @@ Senior Project - Jacob Espling, Cal Poly Slo '22
 Spotify Webapp with ML Analytics
 
 Source code for main project/site in 'site_tutorial/mysite/main'
+
+Initial learning from tutorials is hosted under 'crud_tutorial'
+
+Exploration of the Spotify API's capabilities is hosted under 'spot_access', in which I tested many different access methods before implementing them in the official app.
