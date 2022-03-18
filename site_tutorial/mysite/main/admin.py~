@@ -1,0 +1,10 @@
+from django.contrib import admin
+from .models import UserStat
+
+# Register your models here.
+class UserStatAdmin(admin.ModelAdmin):
+    fields = ["username",
+            "last_name",
+            "first_name"]
+
+admin.site.register(UserStat, UserStatAdmin)

@@ -1,0 +1,26 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+    <div class="card-deck">
+
+            <div class="card teal lighten-4">
+                <div class="card-content black-text">
+                    <span class="card-title">{{ChartName}}</span>
+                        <ul>
+                            {% for c in ChartStats %}
+                                <li>{{c.rank}}. {{c.title}} - {{c.artist|safe}}</li>
+
+                                {% if c.track_id != 'none' %}
+                                <button onclick="location.href = '/chart_track/{{c.track_id}}'">Go To Track</button>
+                                <button onclick="location.href = '/addToPlaylist/{{c.track_id}}'">Add to Playlist</button>
+                                {% endif %}
+                                
+                                <br></br> 
+                            {% endfor %}
+                        </ul>
+                </div>
+            </div>
+
+    </div>
+{% endblock %}
+

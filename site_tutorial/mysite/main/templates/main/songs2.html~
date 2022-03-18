@@ -1,0 +1,18 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+{% for s in SongStats %}
+<div class="container-fluid">
+<div class = "row justify-content-center">
+    <div class="col d-flex justify-content-center">
+        <a onclick="location.href = '/songs/{{s.track_id}}'" >
+        <div class="card" style="width:300px">
+            <div class="card-image">
+            <img src={{s.img_url}} width="300" height="300" alt="{{s.artist}}'s album">
+        </div>
+        </a>
+    </div>
+</div>
+</div>
+{% endfor %}
+{% endblock %}

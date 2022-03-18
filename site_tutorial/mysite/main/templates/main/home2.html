@@ -1,0 +1,40 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+    <div class="card-deck">
+
+            <div class="card teal lighten-4">
+                <div class="card-content black-text">
+                    {% if user.is_authenticated %} 
+                        <span class="card-title">Welcome to Spotify Insights {{user.username}}</span>
+                        <br></br>
+                        {% if user.profile.spotify_username %}
+                            <button onclick="location.href = '/songs'">See Your Top Tracks</button>
+                        {% else %}
+                            <button onclick="location.href = '/update'">Connect to Spotify</button>
+                        {% endif %}
+                    {% else %}
+                        <span class="card-title">Welcome to Spotify Insights</span>
+                        <p> Please create an account to unlock your personal music insights.</p>
+                        <br></br>
+                        <button onclick="location.href = '/register'">Register</button>
+                    {% endif %}
+                </div>
+            </div>
+
+
+            <div class="card teal lighten-4">
+                <div class="card-content black-text">
+                    <span class="card-title">Billboard Hot 100</span>
+                        <ul>
+                            {% for c in ChartStats %}
+                            <li>{{c.rank}}. {{c.title}} - {{c.artist|safe}}</li>
+
+                            {% endfor %}
+                        </ul>
+                </div>
+            </div>
+
+    </div>
+{% endblock %}
+

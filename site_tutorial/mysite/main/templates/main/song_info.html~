@@ -1,0 +1,21 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+{% for t in TrackStats %}
+<div class="row">
+    <div class="col s12 m7">
+        <div class="card">
+            <div class="card-image">
+                <img src={{t.img_url}}>
+            </div>
+            <div class="card-content">
+                <p>{{t.title}} by {{t.artist}} was released on {{t.release_date}} and is {{t.duration}} minutes long.</p>
+            </div>
+            <div class="card-action">
+                <a href={{t.snippet}}> Listen </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
