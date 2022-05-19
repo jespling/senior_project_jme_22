@@ -1,7 +1,8 @@
 from django import forms
-from .models import Profile
+from .models import Profile, Friend_Request
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+
 
 class NewUserForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -17,7 +18,14 @@ class NewUserForm(UserCreationForm):
                 user.save()
             return user
 
+
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('spotify_username',)
+
+
+class FriendForm(forms.ModelForm):
+    class Meta:
+        model = Friend_Request
+        fields = ['from_user', 'to_user']

@@ -1,0 +1,66 @@
+{% extends 'main/header.html' %}
+{% block content %}
+<form action="{% url 'main:send_friend_request' %}"  method="POST">{% csrf_token %}
+    <label for="users">Find Users:</label>
+    <input type="text" id="users" name="users" autocomplete="users">
+    <input type="hidden" id="senderId" name="senderId" value={{user}}>
+    <script>
+  $( function() {
+    var availableUsers = [
+        {% for user in allusers %}
+            "{{user.user.username}}",
+        {% endfor %}
+    ];
+    $( "#users" ).autocomplete({
+      source: availableUsers
+    });
+  } );
+  </script><br><br>
+
+    <script>
+        function getInputValue(){
+            // Selecting the input element and get its value
+            var user = document.getElementById("users").value;
+
+            //join path and user id into format url string
+            str path = "/send_friend_request/" + user.id + "/";
+            return user.id;
+
+        }
+    </script>
+
+    <input type="submit" value="Send them a Friend Request">
+</form>
+
+<div class="card-deck">
+
+    <div class="card teal lighten-4">
+        <div class="card-content black-text">
+            <span class="card-title">My Friends</span>
+            <div class="card-content">
+                <ul class="all_users">
+                    {% for friend in friends %}
+                    <p>{{friend}}</p>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    {% if user.is_authenticated %}
+        <div class="card teal lighten-4">
+        <div class="card-content black-text">
+            <span class="card-title">Friend Requests</span>
+            <div class="card-content">
+                {% for friend_request in all_friend_requests %}
+                {% if user.username == friend_request.to_user.user.username %}
+                <p>{{friend_request.from_user}} <a href="/accept_friend_request/{{friend_request.id}}/">accept friend request</a></p>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

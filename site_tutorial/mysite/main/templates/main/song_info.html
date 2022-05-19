@@ -10,9 +10,24 @@
             </div>
             <div class="card-content">
                 <p>{{t.title}} by {{t.artist}} was released on {{t.release_date}} and is {{t.duration}} minutes long.</p>
+                <br>
+                {% if t.rating == 0 %}
+                    <p>You haven't rated this song yet. Rate it Below!</p>
+                {% else %}
+                    <p>You've rated this song {{t.rating}} out of 5 stars</p>
+                {% endif %}
             </div>
             <div class="card-action">
                 <a href={{t.snippet}}> Listen </a>
+                {% if c.track_id != 'none' %}
+                    <button onclick="location.href = '/addToPlaylist/{{ChartId}}'">Add to Playlist</button>
+                {% endif %}
+                <form action="/rate_song/{{t.title}}/" method="post">
+                    {% csrf_token %}
+                    <label for="rate_song">Rate Song: </label>
+                    <input id="rate_song" type="text" name="rating" value="Enter Rating (1-5 Stars)">
+                    <input type="submit" value="Update Rating">
+                </form>
             </div>
         </div>
     </div>
