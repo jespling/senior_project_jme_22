@@ -11,6 +11,7 @@ urlpatterns = [
     path("rate_song/<str:track_title>/", views.rate_song, name="rate_song"),
     path("chart/<str:chart_name>", views.get_chart, name="get_chart"),
     path("user_chart/", views.get_user_chart, name="get_user_chart"),
+    path("friend_chart/", views.get_friend_chart, name="get_friend_chart"),
     path("chart_track/<str:track_id>", views.get_chart_song_details, name="get_chart_song_details"),
     path("addToPlaylist/<str:track_id>", views.add_to_playlist, name="add_to_playlist"),
     path("register/", views.register, name="register"),

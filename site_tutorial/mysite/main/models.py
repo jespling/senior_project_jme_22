@@ -11,7 +11,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class UserStat(models.Model):
     first_name = models.CharField(max_length=100, default='first')
     last_name = models.CharField(max_length=100, default='last')
-    cd
+    username = models.CharField(max_length=200, default='user')
 
     def __str__(self):
         return self.username
@@ -59,8 +59,10 @@ class SongStat(models.Model):
 
 
 class TrackStat(models.Model):
+    user = models.IntegerField(blank=True, null=True)
     artist = models.CharField(max_length=200, default='none')
     title = models.CharField(max_length=200, default='none')
+    track_id = models.CharField(max_length=200, default='none')
     img_url = models.CharField(max_length=200, default='none')
     release_date = models.CharField(max_length=200, default='none')
     # duration = models.BigIntegerField()
@@ -77,6 +79,7 @@ class TrackStat(models.Model):
 
 
 class ChartStat(models.Model):
+    user = models.IntegerField(blank=True, null=True)
     artist = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     rank = models.BigIntegerField(default=0)
